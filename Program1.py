@@ -35,7 +35,13 @@ A = atan2(-r33, sqrt(r31*r31 + r32*r32))
 T = atan2(r32/cos(A), -r31/cos(A))
 O = atan2(r13/cos(A), -r23/cos(A))
 
-px = c[0]
+px = c[0]*(a[1]*c[1] + a[2]*c23 - d[3]*s23) - d[2]*s[0]
+py = s[0]*(a[1]*c[1] + a[2]*c23 - d[3]*s23) + d[2]*c[0]
+pz = -1*a[2]*s23 - a[1]*s[1] - d[3]*c23
+
+print(px)
+print(py)
+print(pz)
 print(degrees(O))
 print(degrees(A))
 print(degrees(T))
