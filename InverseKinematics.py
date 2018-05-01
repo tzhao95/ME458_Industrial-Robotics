@@ -2,24 +2,34 @@ import pdb
 from math import radians, sin, cos, degrees, atan2, sqrt, pi
 
 #x, y, z, O, A ,T
-#inputs = [-972.2000, -261.760, 794.338, -45.241, 4.735, -112.266]
-#inputs = [648.175, 362.614, 1111.597, 112.232, -17.655, 46.079]
-inputs = [879.737, 414.591, 908.843, 101.208, -5.418, -65.169]
-#inputs = [295.607, -66.719, 1079.214, 38.285, -4.447, 14.899]
+#inputs = [-972.2000, -261.760, 794.338, -45.241, 4.735, -112.266] This data is bad
+#inputs = [648.175, 362.614, 1111.597, 112.232, -17.655, 46.079] #2
+#inputs = [879.737, 414.591, 908.843, 101.208, -5.418, -65.169] #3
+#inputs = [295.607, -66.719, 1079.214, 38.285, -4.447, 14.899] #4
+
 
 #results 2 = [12.749, -71.495, 111.84, 16.799, 32.899, 34.755]
 #results 3 = 14.311, -58.746, 114.069, -6.303, 29.399, -59.966
 #results 4 = -51.872, -113.440, 151.385, 4.832, 47.600, 14.767
 #Used to store radian value of OAT angle
+
+inputs = []
+inputs.append(float(input("Enter X: ")))
+inputs.append(float(input("Enter Y: ")))
+inputs.append(float(input("Enter Z: ")))
+inputs.append(float(input("Enter O: ")))
+inputs.append(float(input("Enter A: ")))
+inputs.append(float(input("Enter T: ")))
+
 OAT = []
 xyz = []
 cOAT = []
 sOAT = []
 c = []
 s = []
-s6temp = []
-c6temp = []
-s23temp = []
+#s6temp = []
+#c6temp = []
+#s23temp = []
 theta1 = []
 theta2 = []
 theta3 = []
@@ -71,9 +81,9 @@ def t5(t1, t3, t4):
 def t6(t1, t3, t4, t5):
 	s6 = -r11*(cos(radians(t1))*c23(t1, t3)*sin(radians(t4)) - sin(radians(t1))*cos(radians(t4))) - r21*(sin(radians(t1))*c23(t1, t3)*sin(radians(t4)) + cos(radians(t1))*cos(radians(t4))) + r31*(s23(t1, t3)*sin(radians(t4)))
 	c6 = r11*((cos(radians(t1))*c23(t1, t3)*cos(radians(t4)) + sin(radians(t1))*sin(radians(t4)))*cos(radians(t5)) - cos(radians(t1))*s23(t1, t3)*sin(radians(t5))) + r21*((sin(radians(t1))*c23(t1,t3)*cos(radians(t4)) - cos(radians(t1))*sin(radians(t4)))*cos(radians(t5)) - sin(radians(t1))*s23(t1, t3)*sin(radians(t5))) - r31*(s23(t1,t3)*cos(radians(t4))*cos(radians(t5)) + c23(t1, t3)*sin(radians(t5)))
-	s23temp.append(s23(t1,t3))
-	s6temp.append(s6)
-	c6temp.append(c6)
+	#s23temp.append(s23(t1,t3))
+	#s6temp.append(s6)
+	#c6temp.append(c6)
 	return degrees(atan2(s6, c6))
 '''
 print('r11 = ', r11)
@@ -94,8 +104,8 @@ print('pz = ', pz)
 theta1.append(degrees(atan2(py, px) - atan2(d[2], sqrt(px*px + py*py - d[2]*d[2]))))
 theta1.append(degrees(atan2(py, px) - atan2(d[2], -1 * sqrt(px*px + py*py - d[2]*d[2]))))
 #print('t1 = ', t1)
-print("theta1:")
-print(theta1)
+#print("theta1:")
+#print(theta1)
 
 c1 = cos(radians(theta1[0]))
 s1 = sin(radians(theta1[0]))
@@ -109,18 +119,15 @@ theta3.append(degrees(atan2(a[3], d[3]) - atan2(K, -1 * sqrt(a[3]*a[3] + d[3]*d[
 #print(theta3 )
 
 theta3output = [theta3[0] + 180, theta3[1] + 180]
-print('theta3:')
-print(theta3output)
-'''
-c3 = cos(radians(-theta3[1]))
-s3 = sin(radians(-theta3[1]))
-'''
+#print('theta3:')
+#print(theta3output)
+
 theta2.append(t23(theta1[0], theta3[0]) - theta3[0])
 theta2.append(t23(theta1[1], theta3[0]) - theta3[0])
 theta2.append(t23(theta1[0], theta3[1]) - theta3[1])
 theta2.append(t23(theta1[1], theta3[1]) - theta3[1])
-print("theta2:")
-print(theta2)
+#print("theta2:")
+#print(theta2)
 
 theta4.append(t4(theta1[0], theta3[0]))
 theta4.append(t4(theta1[1], theta3[0]))
@@ -130,8 +137,8 @@ theta4.append(theta4[0] + 180)
 theta4.append(theta4[1] + 180)
 theta4.append(theta4[2] + 180)
 theta4.append(theta4[3] + 180)
-print("theta4:")
-print(theta4)
+#print("theta4:")
+#print(theta4)
 
 theta5.append(t5(theta1[0], theta3[0], theta4[0]))
 theta5.append(t5(theta1[1], theta3[0], theta4[1]))
@@ -141,8 +148,8 @@ theta5.append(-theta5[0])
 theta5.append(-theta5[1])
 theta5.append(-theta5[2])
 theta5.append(-theta5[3])
-print("theta5:")
-print(theta5)
+#print("theta5:")
+#print(theta5)
 
 theta6.append(t6(theta1[0], theta3[0], theta4[0], theta5[0]))
 theta6.append(t6(theta1[1], theta3[0], theta4[1], theta5[1]))
@@ -152,31 +159,15 @@ theta6.append(theta6[0] + 180)
 theta6.append(theta6[1] + 180)
 theta6.append(theta6[2] + 180)
 theta6.append(theta6[3] + 180)
-print("theta6:")
-print(theta6)
-
-'''
-print("C6: ", c6temp)
-print("S6: ", s6temp)
-print("S23: ", s23temp)
-'''
-'''
-s23 =  ((-a[3] - (a[2]*c3))*pz + (c1*px + s1*py)*(a[2]*s3 - d[3]))/(pz*pz + (c1*px + s1*py)*(c1*px + s1*py))
-c23 = ((a[2]*s3 - d[3])*pz + (a[3]+a[2]*c3)*(c1*px + s1*py))/(pz*pz + (c1*px + s1*py)*(c1*px + s1*py))
-'''
-'''
-theta23 = degrees(atan2((-1*a[3] - a[2]*c3)*pz - (c1*px + s1*py)*(d[3] - a[2]*s3), (a[2]*s3 - d[3])*pz + (a[3]+a[2]*c3)*(c1*px+s1*py)))
-
-theta2.append(theta23 - theta3[0])
-theta2.append(theta23 - theta3[1])
-
-print(theta2)
-
-'''
-'''
-theta4.append(degrees(atan2(-r12*s1 + r23*c1, -r12*c1*c23 - r23*s1*c23 + r33*s23)))
-
-print(theta4)
+#print("theta6:")
+#print(theta6)
 
 
-'''
+print(theta1[0], theta2[0], theta3output[0], theta4[0], theta5[0], theta6[0])
+print(theta1[1], theta2[1], theta3output[0], theta4[1], theta5[1], theta6[1])
+print(theta1[0], theta2[2], theta3output[1], theta4[2], theta5[2], theta6[2])
+print(theta1[1], theta2[3], theta3output[1], theta4[3], theta5[3], theta6[3])
+print(theta1[0], theta2[0], theta3output[0], theta4[4], theta5[4], theta6[4])
+print(theta1[1], theta2[1], theta3output[0], theta4[5], theta5[5], theta6[5])
+print(theta1[0], theta2[2], theta3output[1], theta4[6], theta5[6], theta6[6])
+print(theta1[1], theta2[3], theta3output[1], theta4[7], theta5[7], theta6[7])
